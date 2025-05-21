@@ -18,5 +18,5 @@ This project is part of my JavaScript learning journey to improve my skills in l
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/lilianlau/rock-paper-scissors-game.git
+   git clone https://github.com/lilianLau/rock-paper-scissors-game.git
    cd rock-paper-scissors-game
