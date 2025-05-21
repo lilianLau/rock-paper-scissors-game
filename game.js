@@ -1,9 +1,18 @@
-function getUserChoice(userChoice){
-    const choices = ['rock', 'paper', 'scissors'];
-    if (choices.includes(userChoice)){
-        return userChoice;
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+function getUserChoice(input){
+    const choice = input.toLowerCase();
+    const validChoices = ['rock', 'paper', 'scissors'];
+
+    if (validChoices.includes(choice)){
+        return choice;
     } else{
-        return 'Invalid choice';
+        return null;
     }
 }
 
@@ -30,17 +39,22 @@ function determineWinner(userChoice, computerChoice){
 }
 
 function playGame(){
-    const userChoice = getUserChoice('rock');
-    if (userChoice === 'Invalid choice'){
-        console.log('Please enter a valid choice: rock, paper, or scissors');
-        return;
-    }
-    const computerChoice = getComputerChoice();
-    console.log(`You chose: ${userChoice}`);
-    console.log(`Computer chose: ${computerChoice}`);
+    rl.question('Choose rock, paper, or scissors: ', (userInput) => {
+        const userChoice = getUserChoice(userInput);
 
-    const result = determineWinner(userChoice, computerChoice);
-    console.log(result);
+        if(!userChoice){
+            console.log('Invalid choice. Please enter rock, paper, or scissors.');
+        } else {
+            const computerChoice = getComputerChoice();
+            console.log(`You chose: ${userChoice}`);
+            console.log(`Computer chose: ${computerChoice}`);
+
+            const result = determineWinner(userChoice, computerChoice);
+            console.log(result);
+        }
+
+        rl.close();
+    });
 }
 
 playGame();
